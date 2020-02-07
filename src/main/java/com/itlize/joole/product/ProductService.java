@@ -18,7 +18,8 @@ public class ProductService {
                .forEach(products::add);
 
     }
-    public void getProduct(int id){}
+    public void getProduct(int id){
+    }
     public void addProduct(Product product){}
     public void updateProduct(Product product, int id){}
     public void deleteProduct(int id){}

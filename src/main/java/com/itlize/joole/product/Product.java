@@ -34,6 +34,7 @@ public class Product {
     private int Documentations_documentationsId;
 
     public Product(int productId, String manufacturer, String series, String model, String useType, String application, String mLocation, String accessories, String modelYear, int airflow, int powerMin, int powerMax, int voltageMin, int voltageMax, int speedMin, int speedMax, int noOfFanSpeed, int sound, int diameter, int heightMin, int heightMax, int weight, int salesReps_salesRepId, int manufacturers_manufacturersId, int documentations_documentationsId) {
+        super();
         this.productId = productId;
         this.manufacturer = manufacturer;
         this.series = series;

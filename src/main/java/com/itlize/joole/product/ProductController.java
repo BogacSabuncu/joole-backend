@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
     @Autowired
-    private ProductController productController;
+    private ProductService productService;
 
     @RequestMapping(method = RequestMethod.GET, value ="/products")
     public void getAllProducts(){
-        //return productController.getAllProducts();
+        //return productService.getAllProducts();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/products/{id}")
