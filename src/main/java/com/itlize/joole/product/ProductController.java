@@ -11,7 +11,7 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET, value ="/products")
     public void getAllProducts(){
-
+        //return productController.getAllProducts();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/products/{id}")

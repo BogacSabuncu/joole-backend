@@ -1,7 +1,12 @@
 package com.itlize.joole.product;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Product {
 
+    @Id
     private int productId;
     private String manufacturer;
     private String series;
@@ -51,9 +56,9 @@ public class Product {
         this.heightMin = heightMin;
         this.heightMax = heightMax;
         this.weight = weight;
-        SalesReps_salesRepId = salesReps_salesRepId;
-        Manufacturers_manufacturersId = manufacturers_manufacturersId;
-        Documentations_documentationsId = documentations_documentationsId;
+        this.SalesReps_salesRepId = salesReps_salesRepId;
+        this.Manufacturers_manufacturersId = manufacturers_manufacturersId;
+        this.Documentations_documentationsId = documentations_documentationsId;
     }
 
     public Product() {
