@@ -3,6 +3,8 @@ package com.itlize.joole.salesRep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class SalesRepController {
 
@@ -10,8 +12,8 @@ public class SalesRepController {
     private SalesRepService salesRepService;
 
     @RequestMapping(method = RequestMethod.GET, value ="/salesReps")
-    public void getAllSalesReps(){
-        //return productService.getAllProducts();
+    public List<SalesRep> getAllSalesReps(){
+        return salesRepService.getAllSalesReps();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/salesRep/{id}")

@@ -13,11 +13,12 @@ public class SalesRepService {
     @Autowired
     private  SalesRepRepository salesRepRepository;
 
-    public void getAllSalesReps(){
+    public List<SalesRep> getAllSalesReps(){
         List<SalesRep> salesReps = new ArrayList<>();
         salesRepRepository.findAll()
                 .forEach(salesReps::add);
 
+        return salesReps;
     }
     public void getManufacturer(int id){
     }

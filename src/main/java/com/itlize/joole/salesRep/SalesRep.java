@@ -1,13 +1,15 @@
 package com.itlize.joole.salesRep;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "salesReps")
 public class SalesRep {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int salesRepId;
+
     private String srName;
     private String srPhone;
     private String srEmail;

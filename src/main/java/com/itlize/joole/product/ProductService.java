@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -12,15 +13,22 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public void getAllProducts(){
+    public List<Product> getAllProducts(){
        List<Product> products = new ArrayList<> ();
        productRepository.findAll()
                .forEach(products::add);
 
+       return products;
     }
-    public void getProduct(int id){
+
+    public Optional<Product> getProduct(int id){
+        return productRepository.findById(id);
     }
-    public void addProduct(Product product){}
+
+    public Product addProduct(Product product){
+        return productRepository.save(product);
+    }
+
     public void updateProduct(Product product, int id){}
     public void deleteProduct(int id){}
 }

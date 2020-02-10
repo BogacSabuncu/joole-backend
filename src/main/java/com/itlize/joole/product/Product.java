@@ -1,12 +1,16 @@
 package com.itlize.joole.product;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.itlize.joole.documentation.Documentation;
+import com.itlize.joole.manufacturer.Manufacturer;
+import com.itlize.joole.salesRep.SalesRep;
+
+import javax.persistence.*;
 
 @Entity
 public class Product {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productId;
     private String manufacturer;
     private String series;
@@ -16,6 +20,7 @@ public class Product {
     private String mLocation;
     private String accessories;
     private String modelYear;
+    private String imgUrl;
     private int airflow;
     private int powerMin;
     private int powerMax;
@@ -29,11 +34,15 @@ public class Product {
     private int heightMin;
     private int heightMax;
     private int weight;
-    private int SalesReps_salesRepId;
-    private int Manufacturers_manufacturersId;
-    private int Documentations_documentationsId;
 
-    public Product(int productId, String manufacturer, String series, String model, String useType, String application, String mLocation, String accessories, String modelYear, int airflow, int powerMin, int powerMax, int voltageMin, int voltageMax, int speedMin, int speedMax, int noOfFanSpeed, int sound, int diameter, int heightMin, int heightMax, int weight, int salesReps_salesRepId, int manufacturers_manufacturersId, int documentations_documentationsId) {
+    @ManyToOne
+    private SalesRep salesRep;
+    @ManyToOne
+    private Manufacturer newManufacturer;
+    @OneToOne
+    private Documentation documentation;
+
+    public Product(int productId, String manufacturer, String series, String model, String useType, String application, String mLocation, String accessories, String modelYear, String imgUrl, int airflow, int powerMin, int powerMax, int voltageMin, int voltageMax, int speedMin, int speedMax, int noOfFanSpeed, int sound, int diameter, int heightMin, int heightMax, int weight, int salesRepId, int manufacturersId, int documentationsId) {
         super();
         this.productId = productId;
         this.manufacturer = manufacturer;
@@ -57,13 +66,13 @@ public class Product {
         this.heightMin = heightMin;
         this.heightMax = heightMax;
         this.weight = weight;
-        this.SalesReps_salesRepId = salesReps_salesRepId;
-        this.Manufacturers_manufacturersId = manufacturers_manufacturersId;
-        this.Documentations_documentationsId = documentations_documentationsId;
+        this.salesRep = new SalesRep(salesRepId,"","","","");
+        this.newManufacturer = new Manufacturer(manufacturersId,"","","","");
+        this.documentation = new Documentation(documentationsId,"","");
+        this.imgUrl = imgUrl;
     }
 
-    public Product() {
-    }
+    public Product() { }
 
     public int getProductId(){
         return productId;
@@ -241,27 +250,35 @@ public class Product {
         this.weight = weight;
     }
 
-    public int getSalesReps_salesRepId() {
-        return SalesReps_salesRepId;
+    public SalesRep getSalesRep() {
+        return salesRep;
     }
 
-    public void setSalesReps_salesRepId(int salesReps_salesRepId) {
-        SalesReps_salesRepId = salesReps_salesRepId;
+    public void setSalesRep(SalesRep salesRep) {
+        this.salesRep = salesRep;
     }
 
-    public int getManufacturers_manufacturersId() {
-        return Manufacturers_manufacturersId;
+    public Manufacturer getNewManufacturer() {
+        return newManufacturer;
     }
 
-    public void setManufacturers_manufacturersId(int manufacturers_manufacturersId) {
-        Manufacturers_manufacturersId = manufacturers_manufacturersId;
+    public void setNewManufacturer(Manufacturer newManufacturer) {
+        this.newManufacturer = newManufacturer;
     }
 
-    public int getDocumentations_documentationsId() {
-        return Documentations_documentationsId;
+    public Documentation getDocumentation() {
+        return documentation;
     }
 
-    public void setDocumentations_documentationsId(int documentations_documentationsId) {
-        Documentations_documentationsId = documentations_documentationsId;
+    public void setDocumentation(Documentation documentation) {
+        this.documentation = documentation;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }
