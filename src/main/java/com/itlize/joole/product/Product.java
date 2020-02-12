@@ -5,6 +5,8 @@ import com.itlize.joole.manufacturer.Manufacturer;
 import com.itlize.joole.salesRep.SalesRep;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Product {
@@ -39,8 +41,12 @@ public class Product {
     private SalesRep salesRep;
     @ManyToOne
     private Manufacturer newManufacturer;
-    @OneToOne
-    private Documentation documentation;
+//    @OneToMany()
+//    private Documentation documentation;
+    @OneToMany(cascade = CascadeType.ALL,
+        fetch = FetchType.LAZY,
+        mappedBy = "product")
+    private Set<Documentation> documentations = new HashSet<>();
 
     public Product(int productId, String manufacturer, String series, String model, String useType, String application, String mLocation, String accessories, String modelYear, String imgUrl, int airflow, int powerMin, int powerMax, int voltageMin, int voltageMax, int speedMin, int speedMax, int noOfFanSpeed, int sound, int diameter, int heightMin, int heightMax, int weight, int salesRepId, int manufacturersId, int documentationsId) {
         super();
@@ -68,8 +74,12 @@ public class Product {
         this.weight = weight;
         this.salesRep = new SalesRep(salesRepId,"","","","");
         this.newManufacturer = new Manufacturer(manufacturersId,"","","","");
-        this.documentation = new Documentation(documentationsId,"","");
+        //this.documentation = new Documentation(documentationsId,"","");
         this.imgUrl = imgUrl;
+    }
+
+    public  Product(int id){
+        this.productId = id;
     }
 
     public Product() { }
@@ -266,12 +276,12 @@ public class Product {
         this.newManufacturer = newManufacturer;
     }
 
-    public Documentation getDocumentation() {
-        return documentation;
+    public Set<Documentation> getDocumentations() {
+        return documentations;
     }
 
-    public void setDocumentation(Documentation documentation) {
-        this.documentation = documentation;
+    public void setDocumentations(Set<Documentation> documentations) {
+        this.documentations = documentations;
     }
 
     public String getImgUrl() {

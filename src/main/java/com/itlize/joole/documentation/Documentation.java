@@ -1,9 +1,9 @@
 package com.itlize.joole.documentation;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.itlize.joole.product.Product;
+
+import javax.persistence.*;
 
 @Entity
 public class Documentation {
@@ -14,11 +14,17 @@ public class Documentation {
     private String docName;
     private String docType;
 
-    public Documentation(int documentationId, String docName, String docType) {
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "productId", nullable = false)
+    private Product product;
+
+    public Documentation(int documentationId, String docName, String docType, int productId) {
         super();
         this.documentationId = documentationId;
         this.docName = docName;
         this.docType = docType;
+        this.product = new Product(productId);
     }
 
     public Documentation(){
@@ -47,5 +53,13 @@ public class Documentation {
 
     public void setDocType(String docType) {
         this.docType = docType;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
