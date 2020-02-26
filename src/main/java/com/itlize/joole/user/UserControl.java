@@ -22,7 +22,7 @@ public class UserControl {
         return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/signUp")
+    @RequestMapping(method = RequestMethod.POST, value = "/register")
     public ResponseEntity<?> addUser(@RequestBody User user){
         return new ResponseEntity<>(userService.addUser(user),HttpStatus.OK);
     }
